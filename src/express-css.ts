@@ -16,10 +16,17 @@ export default class ExpressCss {
   private async loadFile(): Promise<void> {
     const file = await fs.readFile(this.path);
     const data = file.toString();
-    this.css = css.parse(data);
+    try {
+      this.css = css.parse(data);
+    } catch (e) {
+      console.error('Invalid css file');
+      process.exit(1);
+    }
   }
 
   public async run(): Promise<void> {
     await this.loadFile();
+    this.app.read(this.css!);
+    this.app.run();
   }
 }

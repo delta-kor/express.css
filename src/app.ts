@@ -1,7 +1,7 @@
 import { Rule, Stylesheet, Declaration } from 'css';
 import { CssSelectorParser, Rule as SelectorRule } from 'css-selector-parser';
 import express, { Application } from 'express';
-import { type } from 'node:os';
+import parseQuote from './quote';
 
 export default class App {
   private readonly app: Application;
@@ -17,7 +17,12 @@ export default class App {
     if (selector.tagName === 'server') {
       for (const declaration of declarations) {
         if (declaration.property === 'port') {
-          this.port = parseInt(declaration.value!);
+          const port = parseInt(parseQuote(declaration.value!));
+          if (!port) {
+            console.error('Invalid port ' + declaration.value);
+            process.exit(1);
+          }
+          this.port = port;
         }
       }
     }

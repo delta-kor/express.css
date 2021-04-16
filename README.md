@@ -1,6 +1,6 @@
 # express.css
 
-A express server powered by css
+An express server powered by css
 
 ## Examples
 

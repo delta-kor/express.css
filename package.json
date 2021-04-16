@@ -1,0 +1,16 @@
+{
+  "name": "express.css",
+  "version": "1.0.0",
+  "description": "express.css server side language",
+  "main": "index.js",
+  "repository": "https://github.com/delta-kor/express.css",
+  "author": "delta-kor <deltakbot1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
